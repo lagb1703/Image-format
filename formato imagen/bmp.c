@@ -240,7 +240,7 @@ static RGBA** getBodyRGBA(int width, int height,int bit, FILE *image){
     RGBA **body = malloc(height * sizeof(RGBA *));
     fseek(image, bit, SEEK_SET);
     for (int i = height - 1; i >= 0; i--) {
-        body[i] = malloc(rgbNumber * sizeof(RGB *));
+        body[i] = malloc(rgbNumber * sizeof(RGBA *));
         fread(body[i], 1, bitsize, image);
     }
     return body;
@@ -484,10 +484,7 @@ void printBmpInfomation(void *i){
 
 int main(){
     bmp24124 *info = 0;
-    int h = 0, w = 15;
-    fGiveBMP("../imagenes/oceano.bmp",(void **) &info);
-    printBmpInfomation(info);
-    tranformGrayScale(info->body, info->info.width, info->info.height);
+    fGiveBMP("../imagenes/persona.bmp",(void **) &info);
     fSaveBMP("../imagenes/omega.bmp", info);
     fCloseBmp(info);
     return 0;
